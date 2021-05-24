@@ -6,6 +6,8 @@ import Search from '../Screens/Search';
 import Favs from '../Screens/Favs';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { useLayoutEffect } from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import { Platform } from 'react-native';
 
 //니꼬의 코드 참고
 //const getHeaderName = (route) => route?.state?.routeNames[route.state.index] || 'Movies'; //이 코드 역시 warning issue가 존재함
@@ -37,7 +39,34 @@ export default ({ navigation, route }) => {
   }, [route]);
 
   return (
-    <Tabs.Navigator>
+    <Tabs.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName = Platform.OS == 'android' ? 'md-' : 'ios-';
+
+          if (route.name == 'Movies') {
+            iconName += 'film-outline';
+          } else if (route.name == 'TV') {
+            iconName += 'tv-outline';
+          } else if (route.name == 'Search') {
+            iconName += 'search-outline';
+          } else if (route.name == 'Favorites') {
+            iconName += 'person-outline';
+          }
+          return (
+            <Ionicons
+              name={iconName}
+              color={focused ? '#3B82F6' : 'white'}
+              size={26}
+            />
+          );
+        },
+      })}
+      tabBarOptions={{
+        showLabel: false,
+        style: { backgroundColor: 'black', borderTopColor: 'black' },
+      }}
+    >
       <Tabs.Screen name='Movies' component={Movies} />
       <Tabs.Screen name='TV' component={TV} />
       <Tabs.Screen name='Search' component={Search} />

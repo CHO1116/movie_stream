@@ -10,16 +10,21 @@ export default () => (
   <Stack.Navigator
     screenOptions={{
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-      headerStyle: { backgroundColor: 'blue' },
+      headerStyle: {
+        backgroundColor: 'black',
+        borderBottomColor: 'black',
+        shadowColor: 'black',
+      },
       headerTintColor: 'white',
-      gestureEnabled: true,
+      gestureEnabled: false,
+      headerBackTitleVisible: false,
     }}
   >
     <Stack.Screen name='Tabs@' component={Tabs} />
     <Stack.Screen
       name='Detail'
       component={Detail}
-      screenOptions={{ headerStyle: 'blue' }}
+      screenOptions={{ headerStyle: 'black' }}
     />
   </Stack.Navigator>
 );

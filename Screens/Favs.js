@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 
 export default () => (
-  <View>
+  <View style={{ flex: 1, backgroundColor: 'black' }}>
     <Text>This Tab is about your Favorite Movies & TV Programs.</Text>
   </View>
 );
