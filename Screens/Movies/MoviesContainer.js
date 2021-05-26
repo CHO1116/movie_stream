@@ -2,10 +2,12 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { View, Text } from 'react-native';
-import { movieApi } from '../api';
+import { movieApi } from '../../api';
+import MoviesPresenter from './MoviesPresenter';
 
 export default () => {
   const [movies, setMovies] = useState({
+    loading: true,
     nowPlaying: [],
     nowPlayingE: null,
     popular: [],
@@ -19,6 +21,7 @@ export default () => {
     const [popular, popularE] = await movieApi.popular();
     const [upcoming, upcomingE] = await movieApi.upcoming();
     setMovies({
+      loading: false,
       nowPlaying,
       nowPlayingE,
       popular,
@@ -31,9 +34,5 @@ export default () => {
   useEffect(() => {
     getData();
   }, []);
-  return (
-    <View style={{ flex: 1, backgroundColor: 'black' }}>
-      <Text style={{ color: 'white' }}>{movies.nowPlaying?.length}</Text>
-    </View>
-  );
+  return <MoviesPresenter />;
 };

@@ -15,7 +15,7 @@ export default () => (
         borderBottomColor: 'black',
         shadowColor: 'black',
       },
-      headerTintColor: 'white',
+      headerTitleStyle: { fontSize: 30, textAlign: 'center', color: 'green' },
       gestureEnabled: false,
       headerBackTitleVisible: false,
     }}
