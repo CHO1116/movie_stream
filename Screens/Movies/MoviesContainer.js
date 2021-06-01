@@ -1,7 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { View, Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
 import { movieApi } from '../../api';
 import MoviesPresenter from './MoviesPresenter';
 
@@ -20,6 +17,7 @@ export default () => {
     const [nowPlaying, nowPlayingE] = await movieApi.nowPlaying();
     const [popular, popularE] = await movieApi.popular();
     const [upcoming, upcomingE] = await movieApi.upcoming();
+
     setMovies({
       loading: false,
       nowPlaying,
@@ -34,5 +32,5 @@ export default () => {
   useEffect(() => {
     getData();
   }, []);
-  return <MoviesPresenter />;
+  return <MoviesPresenter {...movies} />;
 };
